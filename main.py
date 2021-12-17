@@ -38,7 +38,7 @@ class SnakeAndApple:
         self.window = Tk()  # create an object of Tkinter window
         self.window.title("Snake-and-Apple")    # title of the window
         self.canvas = Canvas(self.window, width=size_of_board, height=size_of_board)    # create a canvas on the window having size of board as height and width
-        self.canvas.pack()
+        self.canvas.pack()  # fills the canvas in the window.
         # Input from user in form of clicks and keyboard
         self.window.bind("<Key>", self.key_input)  # Keyboard input by user calls key_input function 
         self.window.bind("<Button-1>", self.mouse_input)    # Button-1 means left-click. mouse_input function called when left click by user
@@ -103,7 +103,7 @@ class SnakeAndApple:
         This function is the main loop. The game will keep running continuously because of the while loop below.
         '''
         while True:                     # run infinitely
-            self.window.update()        # updates window based on user's inputs
+            self.window.update()        # update runs the input methods bound to the window
             if self.begin:              # game running case
                 if not self.crashed:
                     self.window.after(DELAY, self.update_snake(self.last_key))  # DELAY has number of seconds used to set the delay of every window update. Snake is updated everytime after DELAY seconds
@@ -119,7 +119,7 @@ class SnakeAndApple:
         '''
         Display gameover.
         '''
-        score = len(self.snake)
+        score = len(self.snake) 
         self.canvas.delete("all")
         score_text = "Scores \n"
         # Display the string above
@@ -234,10 +234,11 @@ class SnakeAndApple:
     def update_snake(self, key):
         # Check if it hit the wall or its own body
         tail = self.snake[0]
-        head = self.snake[-1]
-        if tail != self.old_apple_cell:
+        head = self.snake[-1] 
+        if tail != self.old_apple_cell:  # delete one cell from tail of snake to move it ahead by one position
             self.snake.pop(0)
-        if key == "Left":
+        # add one cell from head to move it ahead
+        if key == "Left":   
             self.snake.append((head[0] - 1, head[1]))
         elif key == "Right":
             self.snake.append((head[0] + 1, head[1]))
@@ -247,6 +248,7 @@ class SnakeAndApple:
             self.snake.append((head[0], head[1] + 1))
 
         head = self.snake[-1]
+        # Hit the wall / Hit on body
         if (
                 head[0] > cols - 1
                 or head[0] < 0
@@ -254,14 +256,14 @@ class SnakeAndApple:
                 or head[1] < 0
                 or len(set(self.snake)) != len(self.snake)
         ):
-            # Hit the wall / Hit on body
             self.crashed = True
+        # Got the apple
         elif self.apple_cell == head:
-            # Got the apple
             self.old_apple_cell = self.apple_cell
             self.canvas.delete(self.apple_obj)
             self.place_apple()
             self.display_snake()
+        
         else:
             self.snake_heading = key
             self.display_snake()
