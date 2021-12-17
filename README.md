@@ -18,6 +18,9 @@ python main.py
 <img src="/images/preview.gif">
 </p>
 
+## Flowchart:
+![flowchart](images/snakeAndAppleFlowchart.jpg)
+
 ## Screenshots
 <p align="center">
 <img width=1000 src="/images/screenshot.png">
