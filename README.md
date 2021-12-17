@@ -31,6 +31,6 @@ python main.py
 
 
 ## Author
-[Aqeel Anwar](https://www.prism.gatech.edu/~manwar8)
+[Aqeel Anwar](https://www.prism.gatech.edu/~manwar8)    
 Edited by: [Vinit-source](https://github.com/Vinit-source)
 
